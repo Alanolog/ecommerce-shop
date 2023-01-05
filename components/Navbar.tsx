@@ -6,9 +6,9 @@ export const Navbar = () => {
   return (
     <div className=" h-16">
       <div className=" px-3 py-5 flex justify-between">
-        <div className=" flex-1 flex items-center border border-gray-400">
+        <div className=" flex-1 flex items-center">
           <span className=" text-sm cursor-pointer">EN</span>
-          <div className=" flex items-center ml-6 p-1 gap-1">
+          <div className=" flex items-center ml-6 p-1 gap-1 border border-gray-400">
             <input className=" border-none" />
             <BiSearch style={{ color: "gray", fontSize: 16 }} />
           </div>

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import { Navbar, Announcement } from "../components";
+import { Navbar, Announcement, Slider } from "../components";
 
 const Home: React.FC = () => {
   return (
@@ -12,6 +12,7 @@ const Home: React.FC = () => {
       </Head>
       <Announcement />
       <Navbar />
+      <Slider />
     </>
   );
 };
