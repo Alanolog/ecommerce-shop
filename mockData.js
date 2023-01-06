@@ -17,18 +17,18 @@ export const slides = [
 ];
 export const categories = [
   {
-    img: "./sitting-woman.png",
-    title: "Shirts",
+    img: "./model1.jpg",
+    title: "Awesome Wigs",
     id: 1,
   },
   {
-    img: "./peoples.png",
-    title: "Loungewear",
+    img: "./model2.jpg",
+    title: "Great Hats",
     id: 2,
   },
   {
-    img: "./gamer.png",
-    title: "Gamer clothes",
+    img: "./model3.jpg",
+    title: "Black Jeans",
     id: 3,
   },
 ];
