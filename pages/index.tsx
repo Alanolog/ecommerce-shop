@@ -1,6 +1,12 @@
 import Head from "next/head";
 import React from "react";
-import { Navbar, Announcement, Slider, Categories } from "../components";
+import {
+  Navbar,
+  Announcement,
+  Slider,
+  Categories,
+  Products,
+} from "../components";
 
 const Home: React.FC = () => {
   return (
@@ -14,6 +20,7 @@ const Home: React.FC = () => {
       <Navbar />
       <Slider />
       <Categories />
+      <Products />
     </>
   );
 };
