@@ -6,6 +6,7 @@ import {
   Slider,
   Categories,
   Products,
+  Newsletter,
 } from "../components";
 
 const Home: React.FC = () => {
@@ -21,6 +22,7 @@ const Home: React.FC = () => {
       <Slider />
       <Categories />
       <Products />
+      <Newsletter />
     </>
   );
 };
