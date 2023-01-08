@@ -14,7 +14,9 @@ export const Navbar = () => {
           </div>
         </div>
         <div className=" flex-1 text-center ">
-          <h1 className=" font-semibold">RANDOM</h1>
+          <h1 className=" font-semibold">
+            <a href="/">RANDOM.</a>
+          </h1>
         </div>
         <div className=" flex-1 flex items-center ">
           <div className=" flex-1 text-sm cursor-pointer ml-3">REGISTER</div>

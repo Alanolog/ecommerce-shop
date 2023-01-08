@@ -1,48 +1,43 @@
 import React from "react";
-import { Newsletter } from "../components";
+import { Newsletter } from "../../components";
 import { MdRemoveCircleOutline } from "react-icons/md";
 import { RiAddCircleLine } from "react-icons/ri";
 
-const Product: React.FC = () => {
-  const filterColorClasses = " w-5 h-5 rounded-full mx-1 cursor-pointer";
+interface IProps {
+  product: {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+    rating: {
+      rate: number;
+      count: number;
+    };
+  };
+}
+
+const Product: React.FC<IProps> = ({ product }) => {
   const filterSizeClasses = " ml-2 p-1";
   return (
     <main>
       <div className=" p-12 flex">
         <div className="flex-1">
           <img
-            src="./jeans.jpg"
-            alt="jeans"
+            src={product.image}
+            alt={product.title}
             className=" w-full h-5/6 object-cover"
           />
         </div>
         <div className=" flex-1 px-12">
-          <h2 className=" font-extralight text-7xl">Jeans</h2>
-          <p className="my-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-            eligendi pariatur, perferendis deserunt explicabo rerum illum omnis
-            corporis. Numquam quam provident architecto assumenda quae culpa
-            fugiat voluptate optio sequi dolores accusamus blanditiis, beatae
-            delectus pariatur aspernatur recusandae eum totam perferendis ad!
-            Tempora, alias fugit! Aliquid neque dolorum et natus animi.
+          <h2 className=" font-extralight text-7xl">{product.title}</h2>
+          <p className="my-5">{product.description}</p>
+          <span className=" font-thin text-4xl">{product.price} USD</span>
+          <p className=" font-extralight text-xl my-5">
+            Rating: {product.rating.rate}/5
           </p>
-          <span className=" font-thin text-4xl">20 USD</span>
           <div className="flex justify-between w-1/2 my-8">
-            <div className=" flex items-center">
-              <span className=" text-xl font-extralight">Color</span>
-              <div
-                className={`${filterColorClasses} bg-black `}
-                color="black"
-              ></div>
-              <div
-                className={`${filterColorClasses} bg-blue-800 `}
-                color="darkblue"
-              ></div>
-              <div
-                className={`${filterColorClasses} bg-gray-700 `}
-                color="gray"
-              ></div>
-            </div>
             <div className=" flex items-center">
               <span className=" text-xl font-extralight">Size</span>
               <select>
@@ -73,3 +68,16 @@ const Product: React.FC = () => {
   );
 };
 export default Product;
+
+export async function getServerSideProps(context: {
+  params: {
+    id: string;
+  };
+}) {
+  const product = await fetch(
+    `https://fakestoreapi.com/products/${context.params.id}`
+  ).then((res) => res.json());
+  return {
+    props: { product }, // will be passed to the page component as props
+  };
+}

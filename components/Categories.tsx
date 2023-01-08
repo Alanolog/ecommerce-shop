@@ -1,12 +1,15 @@
 import React from "react";
-import { categories } from "../mockData";
 import { CategoryItem } from "./";
 
-export const Categories = () => {
+interface IProps {
+  categories: string[];
+}
+
+export const Categories: React.FC<IProps> = ({ categories }) => {
   return (
     <div className=" flex p-5 justify-between">
-      {categories.map((item) => (
-        <CategoryItem item={item} key={item.id} />
+      {categories.map((item, id) => (
+        <CategoryItem item={item} key={id} />
       ))}
     </div>
   );
