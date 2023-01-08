@@ -7,6 +7,7 @@ import {
   Categories,
   Products,
   Newsletter,
+  Footer,
 } from "../components";
 
 const Home: React.FC = () => {
@@ -23,6 +24,7 @@ const Home: React.FC = () => {
       <Categories />
       <Products />
       <Newsletter />
+      <Footer />
     </>
   );
 };
