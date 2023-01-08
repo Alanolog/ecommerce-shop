@@ -1,4 +1,5 @@
 import React from "react";
+import { Products, Newsletter } from "../components";
 
 const ProductList: React.FC = () => {
   const optionClasses = " font-light";
@@ -40,6 +41,8 @@ const ProductList: React.FC = () => {
           </select>
         </div>
       </div>
+      <Products />
+      <Newsletter />
     </main>
   );
 };

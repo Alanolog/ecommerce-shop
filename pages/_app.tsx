@@ -1,13 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import {
-  Navbar,
-  Announcement,
-  Footer,
-  Newsletter,
-  Products,
-} from "../components";
+import { Navbar, Announcement, Footer } from "../components";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -22,8 +16,6 @@ export default function App({ Component, pageProps }: AppProps) {
         <Navbar />
       </header>
       <Component {...pageProps} />
-      <Products />
-      <Newsletter />
       <Footer />
     </>
   );
