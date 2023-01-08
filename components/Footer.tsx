@@ -12,7 +12,7 @@ export const Footer = () => {
   const singleListItem = " w-1/2 mb-2";
   const contactItem = " mb-5 flex items-center";
   return (
-    <div className=" flex ">
+    <footer className=" flex ">
       <div className=" flex-1 flex flex-col p-5">
         <h2 className=" font-semibold text-3xl">RANDOM</h2>
         <p className=" my-5">
@@ -61,6 +61,6 @@ export const Footer = () => {
         </div>
         <img src="./payment.png" alt="payment methods" className="w-2/3" />
       </div>
-    </div>
+    </footer>
   );
 };
