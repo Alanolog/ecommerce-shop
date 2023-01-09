@@ -1,5 +1,5 @@
 import React from "react";
-import { Products, Newsletter } from "../components";
+import { Products } from "../components";
 
 interface IProps {
   products: {
@@ -94,16 +94,22 @@ const ProductList: React.FC<IProps> = ({ products }) => {
         </div>
       </div>
       <Products products={currProducts} />
-      <Newsletter />
     </main>
   );
 };
 export default ProductList;
 
-export async function getServerSideProps() {
-  const products = await fetch("https://fakestoreapi.com/products").then(
-    (res) => res.json()
-  );
+export async function getServerSideProps(context: {
+  query?: {
+    category?: string;
+  };
+}) {
+  const category = context?.query?.category;
+  const products = await fetch(
+    `https://fakestoreapi.com/products${
+      category ? `/category/${category}` : ""
+    }`
+  ).then((res) => res.json());
 
   return {
     props: { products }, // will be passed to the page component as props

@@ -1,5 +1,4 @@
 import React from "react";
-import { Newsletter } from "../../components";
 import { MdRemoveCircleOutline } from "react-icons/md";
 import { RiAddCircleLine } from "react-icons/ri";
 
@@ -20,6 +19,17 @@ interface IProps {
 
 const Product: React.FC<IProps> = ({ product }) => {
   const filterSizeClasses = " ml-2 p-1";
+
+  const [counter, setCounter] = React.useState(1);
+
+  const handleAddToCart = () => {
+    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    localStorage.setItem(
+      "cart",
+      JSON.stringify([...storedCart, { item: product, amount: counter }])
+    );
+  };
+
   return (
     <main>
       <div className=" p-12 flex">
@@ -51,19 +61,31 @@ const Product: React.FC<IProps> = ({ product }) => {
           </div>
           <div className=" flex items-center w-1/2 justify-between">
             <div className=" flex items-center font-bold">
-              <MdRemoveCircleOutline className=" cursor-pointer" />
+              <MdRemoveCircleOutline
+                className=" cursor-pointer"
+                onClick={() => {
+                  if (counter - 1 !== 0) setCounter(counter - 1);
+                }}
+              />
               <span className=" w-8 h-8 rounded-xl border border-teal-600 flex items-center justify-center mx-1">
-                1
+                {counter}
               </span>
-              <RiAddCircleLine className="cursor-pointer" />
+              <RiAddCircleLine
+                className="cursor-pointer"
+                onClick={() => {
+                  if (counter < 10) setCounter(counter + 1);
+                }}
+              />
             </div>
-            <button className=" uppercase p-4 border-2 border-teal-600 bg-white cursor-pointer rounded-sm hover:bg-slate-100 transition-all ">
+            <button
+              className=" uppercase p-4 border-2 border-teal-600 bg-white cursor-pointer rounded-sm hover:bg-slate-100 transition-all "
+              onClick={handleAddToCart}
+            >
               Add to cart
             </button>
           </div>
         </div>
       </div>
-      <Newsletter />
     </main>
   );
 };

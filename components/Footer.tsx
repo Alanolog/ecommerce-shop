@@ -59,7 +59,6 @@ export const Footer = () => {
         <div className={contactItem}>
           <BsMailbox className=" mr-3" /> contact@random.random
         </div>
-        <img src="./payment.png" alt="payment methods" className="w-2/3" />
       </div>
     </footer>
   );

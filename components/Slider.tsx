@@ -1,23 +1,53 @@
 import React from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
-import { slides } from "../mockData";
+import { useRouter } from "next/router";
 
-const Slide: React.FC<{ img: string; title: string; description?: string }> = ({
-  img,
-  title,
-  description,
-}) => {
+const slides = [
+  {
+    img: "./women.png",
+    title: "Women's Sale",
+    description: "Special offer 30% off for women's",
+    productListCategory: "women's clothing",
+  },
+  {
+    img: "./muscular-men.png",
+    title: "Men's sale!",
+    description: "Special offers up to 25% off",
+    productListCategory: "men's clothing",
+  },
+  {
+    img: "./jewelery.png",
+    title: "Jewelery Sale",
+    description: "Special offer for jewelery up to 33% off",
+    productListCategory: "jewelery",
+  },
+];
+
+const Slide: React.FC<{
+  img: string;
+  title: string;
+  description?: string;
+  productListCategory: string;
+}> = ({ img, title, description, productListCategory }) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/productList?category=${productListCategory}`);
+  };
   return (
     <div className="flex items-center h-screen w-screen">
       <div className=" flex-1 h-full flex items-center justify-center">
-        <img src={img} alt="Clothes add" className=" h-4/5" />
+        <img src={img} alt={title} className=" h-4/5" />
       </div>
       <div className=" flex-1 p-12">
         <h1 className=" text-7xl font-semibold uppercase">{title}</h1>
         <p className=" mx-12 my-0 text-xl font-medium tracking-[3px] uppercase">
           {description}
         </p>
-        <button className="p-2 text-xl bg-transparent cursor-pointer border border-black uppercase">
+        <button
+          className="p-2 text-xl bg-transparent cursor-pointer border border-black uppercase"
+          onClick={handleClick}
+        >
           Shop now
         </button>
       </div>
@@ -55,6 +85,7 @@ export const Slider = () => {
               img={slide.img}
               title={slide.title}
               description={slide.description}
+              productListCategory={slide.productListCategory}
               key={id}
             />
           );

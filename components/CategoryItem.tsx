@@ -1,10 +1,17 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 interface IProps {
   item: string;
 }
 
 export const CategoryItem: React.FC<IProps> = ({ item }) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/productList?category=${item}`);
+  };
+
   let itemImgSrc = "./categories-base.jpg";
   switch (item) {
     case "electronics": {
@@ -39,7 +46,10 @@ export const CategoryItem: React.FC<IProps> = ({ item }) => {
         <h2 className=" font-semibold uppercase text-3xl text-white mb-5">
           {item}
         </h2>
-        <button className=" uppercase border-none p-3 bg-white text-gray-600 font-semibold rounded-md">
+        <button
+          className=" uppercase border-none p-3 bg-white text-gray-600 font-semibold rounded-md"
+          onClick={handleClick}
+        >
           Shop Now
         </button>
       </div>

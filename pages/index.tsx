@@ -1,5 +1,5 @@
 import React from "react";
-import { Slider, Categories, Newsletter, Products } from "../components";
+import { Slider, Categories, Products } from "../components";
 
 interface IProps {
   products: {
@@ -23,7 +23,6 @@ const Home: React.FC<IProps> = ({ products, categories }) => {
       <Slider />
       <Categories categories={categories} />
       <Products products={products.slice(0, 8)} />
-      <Newsletter />
     </main>
   );
 };
