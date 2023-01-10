@@ -1,6 +1,6 @@
 import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useContext } from "../components/ContextProvider";
+import { useContext } from "../components";
 
 export const Navbar = () => {
   const { cartItemsCount, setCartItemsCount } = useContext();
@@ -21,12 +21,14 @@ export const Navbar = () => {
         </div>
         <div className=" flex-1  relative">
           <div className=" cursor-pointer mr-5">
-            {cartItemsCount ? (
-              <div className=" rounded-full w-5 h-5 bg-red-500 absolute top-0 right-3 flex items-center justify-center text-white text-xs">
-                {cartItemsCount}
-              </div>
-            ) : null}
-            <AiOutlineShoppingCart className=" absolute top-2 right-7 text-xl" />
+            <a href="/cart">
+              {cartItemsCount ? (
+                <div className=" rounded-full w-5 h-5 bg-red-500 absolute top-0 right-3 flex items-center justify-center text-white text-xs">
+                  {cartItemsCount}
+                </div>
+              ) : null}
+              <AiOutlineShoppingCart className=" absolute top-2 right-7 text-xl" />
+            </a>
           </div>
         </div>
       </div>

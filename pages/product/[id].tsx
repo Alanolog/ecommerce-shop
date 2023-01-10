@@ -1,7 +1,23 @@
 import React from "react";
 import { MdRemoveCircleOutline } from "react-icons/md";
 import { RiAddCircleLine } from "react-icons/ri";
-import { useContext } from "../../components/ContextProvider";
+import { useContext } from "../../components";
+
+type singleProduct = {
+  item: {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+    rating: {
+      rate: number;
+      count: number;
+    };
+  };
+  amount: number;
+};
 
 interface IProps {
   product: {
@@ -26,13 +42,20 @@ const Product: React.FC<IProps> = ({ product }) => {
 
   const handleAddToCart = () => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-    localStorage.setItem(
-      "cart",
-      JSON.stringify([...storedCart, { item: product, amount: counter }])
+    const itemIndex = storedCart.findIndex(
+      (singleItem: singleProduct) => singleItem.item.id === product.id
     );
-    setCartItemsCount(
-      [...storedCart, { item: product, amount: counter }].length
-    );
+    if (itemIndex !== -1) {
+      const amount = storedCart[itemIndex].amount;
+      storedCart[itemIndex] = { item: product, amount: amount + counter };
+      localStorage.setItem("cart", JSON.stringify([...storedCart]));
+    } else {
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([...storedCart, { item: product, amount: 1 }])
+      );
+      setCartItemsCount([...storedCart, { item: product, amount: 1 }].length);
+    }
   };
 
   return (

@@ -1,8 +1,22 @@
 import React from "react";
 import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
 import { useRouter } from "next/router";
-import { useContext } from "../components/ContextProvider";
-
+import { useContext } from "../components";
+type singleProduct = {
+  item: {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+    rating: {
+      rate: number;
+      count: number;
+    };
+  };
+  amount: number;
+};
 interface IProps {
   item: {
     id: number;
@@ -27,11 +41,20 @@ export const Product: React.FC<IProps> = ({ item }) => {
 
   const handleAddToCart = () => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-    localStorage.setItem(
-      "cart",
-      JSON.stringify([...storedCart, { item, amount: 1 }])
+    const itemIndex = storedCart.findIndex(
+      (singleItem: singleProduct) => singleItem.item.id === item.id
     );
-    setCartItemsCount([...storedCart, { item, amount: 1 }].length);
+    if (itemIndex !== -1) {
+      const amount = storedCart[itemIndex].amount;
+      storedCart[itemIndex] = { item, amount: amount + 1 };
+      localStorage.setItem("cart", JSON.stringify([...storedCart]));
+    } else {
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([...storedCart, { item, amount: 1 }])
+      );
+      setCartItemsCount([...storedCart, { item, amount: 1 }].length);
+    }
   };
 
   return (
