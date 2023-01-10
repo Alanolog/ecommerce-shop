@@ -1,5 +1,6 @@
 import React from "react";
 import { Products } from "../components";
+import axios from "axios";
 
 interface IProps {
   products: {
@@ -109,13 +110,13 @@ export async function getServerSideProps(context: {
   };
 }) {
   const category = context?.query?.category;
-  const products = await fetch(
+  const products = await axios.get(
     `https://fakestoreapi.com/products${
       category ? `/category/${category}` : ""
     }`
-  ).then((res) => res.json());
+  );
 
   return {
-    props: { products }, // will be passed to the page component as props
+    props: { products: products.data }, // will be passed to the page component as props
   };
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { Slider, Categories, Products } from "../components";
+import axios from "axios";
 
 interface IProps {
   products: {
@@ -29,14 +30,12 @@ const Home: React.FC<IProps> = ({ products, categories }) => {
 export default Home;
 
 export async function getServerSideProps() {
-  const products = await fetch("https://fakestoreapi.com/products").then(
-    (res) => res.json()
-  );
-  const categories = await fetch(
+  const products = await axios.get("https://fakestoreapi.com/products");
+  const categories = await axios.get(
     "https://fakestoreapi.com/products/categories"
-  ).then((res) => res.json());
+  );
 
   return {
-    props: { products, categories }, // will be passed to the page component as props
+    props: { products: products.data, categories: categories.data }, // will be passed to the page component as props
   };
 }

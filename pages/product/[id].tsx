@@ -2,6 +2,7 @@ import React from "react";
 import { MdRemoveCircleOutline } from "react-icons/md";
 import { RiAddCircleLine } from "react-icons/ri";
 import { useContext } from "../../components";
+import axios from "axios";
 
 type singleProduct = {
   item: {
@@ -129,10 +130,10 @@ export async function getServerSideProps(context: {
     id: string;
   };
 }) {
-  const product = await fetch(
+  const product = await axios.get(
     `https://fakestoreapi.com/products/${context.params.id}`
-  ).then((res) => res.json());
+  );
   return {
-    props: { product }, // will be passed to the page component as props
+    props: { product: product.data }, // will be passed to the page component as props
   };
 }
