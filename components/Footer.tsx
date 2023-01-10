@@ -8,6 +8,7 @@ import {
   BsMailbox,
 } from "react-icons/bs";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export const Footer = () => {
   const router = useRouter();
@@ -44,16 +45,19 @@ export const Footer = () => {
             Cart
           </li>
           <li className={singleListItem}>
-            <a href="/productList?category=men's clothing">Man Fashion</a>
+            <Link href="/productList?category=men's clothing">Man Fashion</Link>
           </li>
           <li className={singleListItem}>
-            <a href="/productList?category=women's clothing"> Woman Fashion</a>
+            <Link href="/productList?category=women's clothing">
+              {" "}
+              Woman Fashion
+            </Link>
           </li>
           <li className={singleListItem}>
-            <a href="/productList?category=jewelery">Jewelery</a>
+            <Link href="/productList?category=jewelery">Jewelery</Link>
           </li>
           <li className={singleListItem}>
-            <a href="/productList?category=electronics">Electronics</a>
+            <Link href="/productList?category=electronics">Electronics</Link>
           </li>
         </ul>
       </div>
