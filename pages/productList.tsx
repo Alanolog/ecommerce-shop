@@ -17,8 +17,8 @@ interface IProps {
 }
 
 const ProductList: React.FC<IProps> = ({ products }) => {
-  const optionClasses = " font-light";
-  const selectClasses = " outline-none";
+  const optionClasses = " font-light sm:text-sm";
+  const selectClasses = " outline-none sm:text-sm";
   const [currProducts, setCurrProducts] = React.useState(products);
 
   const handlePriceChoose = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -54,9 +54,11 @@ const ProductList: React.FC<IProps> = ({ products }) => {
 
   return (
     <main>
-      <div className=" flex justify-between">
-        <div className="m-5">
-          <span className=" text-xl font-semibold mr-5">Filter Products:</span>
+      <div className=" flex justify-between sm:flex-col">
+        <div className="m-5 sm:flex sm:justify-between">
+          <span className=" text-xl font-semibold mr-5 sm:text-sm">
+            Filter Products:
+          </span>
           <select
             className={selectClasses}
             defaultValue="choose"
@@ -76,8 +78,10 @@ const ProductList: React.FC<IProps> = ({ products }) => {
             </option>
           </select>
         </div>
-        <div className="m-5">
-          <span className=" text-xl font-semibold mr-5">Sort Products:</span>
+        <div className="m-5 sm:flex sm:justify-between">
+          <span className=" text-xl font-semibold mr-5 sm:text-sm">
+            Sort Products:
+          </span>
           <select
             className={selectClasses}
             defaultValue="rating"

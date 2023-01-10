@@ -68,7 +68,7 @@ export const Slider = () => {
   };
 
   return (
-    <div className=" h-screen w-full flex bg-orange-400 relative overflow-hidden">
+    <div className=" h-screen w-full flex bg-orange-400 relative overflow-hidden sm:hidden">
       <div
         className=" w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center absolute top-1/2 left-2 cursor-pointer opacity-50 z-10"
         onClick={() => handleClick("left")}

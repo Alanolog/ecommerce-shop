@@ -40,10 +40,10 @@ export const CategoryItem: React.FC<IProps> = ({ item }) => {
       <img
         src={itemImgSrc}
         alt={item}
-        className=" w-full h-full object-cover  "
+        className=" w-full h-full object-cover sm:h-[30vh] "
       />
       <div className=" absolute w-full h-full top-0 left-0 flex items-center justify-center flex-col">
-        <h2 className=" font-semibold uppercase text-3xl text-white mb-5">
+        <h2 className=" font-semibold uppercase text-3xl text-white mb-5 lg:text-center">
           {item}
         </h2>
         <button

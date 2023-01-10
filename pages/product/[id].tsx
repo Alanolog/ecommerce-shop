@@ -60,22 +60,27 @@ const Product: React.FC<IProps> = ({ product }) => {
 
   return (
     <main>
-      <div className=" p-12 flex">
+      <div className=" p-12 flex lg:flex-col sm:p-1">
+        <h2 className=" hidden font-extralight lg:text-5xl sm:text-2xl  lg:block my-5">
+          {product.title}
+        </h2>
         <div className="flex-1">
           <img
             src={product.image}
             alt={product.title}
-            className=" w-full h-5/6 object-cover"
+            className=" w-full h-5/6 object-contain"
           />
         </div>
-        <div className=" flex-1 px-12">
-          <h2 className=" font-extralight text-7xl">{product.title}</h2>
+        <div className=" flex-1 px-12 sm:px-1 lg:flex lg:flex-col lg:items-center">
+          <h2 className=" font-extralight text-7xl lg:hidden">
+            {product.title}
+          </h2>
           <p className="my-5">{product.description}</p>
           <span className=" font-thin text-4xl">{product.price} USD</span>
           <p className=" font-extralight text-xl my-5">
             Rating: {product.rating.rate}/5
           </p>
-          <div className="flex justify-between w-1/2 my-8">
+          <div className="flex justify-between w-1/2 my-8 lg:justify-center">
             <div className=" flex items-center">
               <span className=" text-xl font-extralight">Size</span>
               <select>
@@ -87,7 +92,7 @@ const Product: React.FC<IProps> = ({ product }) => {
               </select>
             </div>
           </div>
-          <div className=" flex items-center w-1/2 justify-between">
+          <div className=" flex items-center w-1/2 justify-between lg:flex-col lg:gap-5">
             <div className=" flex items-center font-bold">
               <MdRemoveCircleOutline
                 className=" cursor-pointer"

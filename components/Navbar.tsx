@@ -9,18 +9,18 @@ export const Navbar = () => {
     setCartItemsCount(JSON.parse(localStorage.getItem("cart") || "[]").length);
   }, []);
   return (
-    <div className=" h-16">
-      <div className=" px-3 py-5 flex justify-between">
-        <div className=" flex-1 flex items-center">
+    <div className=" h-16 sm:h-12 ">
+      <div className=" px-3 py-5 flex justify-between sm:py-2">
+        <div className=" flex-1 flex items-center sm:hidden">
           <span className=" text-sm cursor-pointer">EN</span>
         </div>
-        <div className=" flex-1 text-center ">
-          <h1 className=" font-semibold">
+        <div className=" flex-1 text-center sm:text-start ">
+          <h1 className=" font-semibold text-2xl sm:text-xl">
             <a href="/">RANDOM.</a>
           </h1>
         </div>
-        <div className=" flex-1  relative">
-          <div className=" cursor-pointer mr-5">
+        <div className=" flex-1  relative sm:content-center">
+          <div className=" cursor-pointer mr-5 sm:mr-2">
             <a href="/cart">
               {cartItemsCount ? (
                 <div className=" rounded-full w-5 h-5 bg-red-500 absolute top-0 right-3 flex items-center justify-center text-white text-xs">

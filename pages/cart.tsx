@@ -48,12 +48,12 @@ const CartProduct: React.FC<CartProps> = ({ singleProduct }) => {
     }
   };
   return (
-    <div className=" flex justify-between my-2 border-b pb-2">
-      <div className="flex-2 flex">
+    <div className=" flex justify-between my-2 border-b pb-2 sm:flex-col sm:items-center sm:gap-2">
+      <div className="flex-2 flex sm:flex-col">
         <img
           src={currProduct.item.image}
           alt={currProduct.item.title}
-          className=" w-[200px]"
+          className=" w-[200px] sm:w-full sm:max-h-[50vh] sm:object-scale-down lg:max-w-[33vw]"
         />
         <div className=" p-5 flex flex-col items-center content-around">
           <p className="">
@@ -101,16 +101,28 @@ const Cart: React.FC = () => {
 
   const [storedCart, setStoredCart] = React.useState([]);
   const [isCheckedOut, setIsCheckedOut] = React.useState(false);
+  const [subtotal, setSubtotal] = React.useState(
+    storedCart.reduce((acc, val: singleProduct) => {
+      return acc + val.item.price * val.amount;
+    }, 0)
+  );
+  const [isShippingDiscount, setIsShippingDiscount] = React.useState(false);
+  const [shippingPrice, setShippingPrice] = React.useState(
+    isShippingDiscount ? 0 : 5.99
+  );
   const { cartItemsCount, setCartItemsCount } = useContext();
   React.useEffect(() => {
     setStoredCart(JSON.parse(localStorage.getItem("cart") || "[]"));
   }, [cartItemsCount]);
-  const subtotal = storedCart.reduce((acc, val: singleProduct) => {
-    return acc + val.item.price * val.amount;
-  }, 0);
-  const isShippingDiscount = storedCart.length >= 2;
-  const shippingPrice = isShippingDiscount ? 0 : 5.99;
-
+  React.useEffect(() => {
+    setSubtotal(
+      storedCart.reduce((acc, val: singleProduct) => {
+        return acc + val.item.price * val.amount;
+      }, 0)
+    );
+    setIsShippingDiscount(storedCart.length >= 2);
+    setShippingPrice(isShippingDiscount ? 0 : 5.99);
+  }, [storedCart]);
   const summaryItemClasses = " my-3 flex justify-between ";
   const summaryItemTextClasses = " font-semibold ";
   const summaryItemPriceClasses = " font-semibold";
@@ -123,33 +135,33 @@ const Cart: React.FC = () => {
   };
   return (
     <main className="flex justify-center py-5 flex-col items-center">
-      <h1 className="text-5xl uppercase font-light">Your cart</h1>
+      <h1 className="text-5xl uppercase font-light sm:text-3xl">Your cart</h1>
       {isCheckedOut ? (
-        <div className="text-3xl uppercase font-extralight h-[60vh] flex justify-center items-center">
+        <div className="text-3xl uppercase font-extralight h-[60vh] flex justify-center items-center sm:text-xl sm:text-center sm:p-1">
           Thanks for selecting our shop!
         </div>
       ) : (
         <>
-          <div className=" flex items-center justify-between w-4/5 my-5">
+          <div className=" flex items-center justify-between w-4/5 my-5 sm:w-full sm:px-1 sm:text-sm">
             <button
-              className=" p-2 cursor-pointer font-semibold uppercase border border-gray-900 text-gray-900 rounded"
+              className=" p-2 cursor-pointer font-semibold uppercase border border-gray-900 text-gray-900 rounded sm:p-1 "
               onClick={() => router.push("/")}
             >
               Continue shopping
             </button>
             <div className="">
-              <span className=" underline cursor-pointer my-2">
+              <span className=" underline cursor-pointer my-2 sm:hidden">
                 Shopping Bag({cartItemsCount})
               </span>
             </div>
             <button
-              className=" p-2 cursor-pointer font-semibold uppercase  bg-gray-900 text-gray-200 rounded"
+              className=" p-2 cursor-pointer font-semibold uppercase  bg-gray-900 text-gray-200 rounded sm:p-1"
               onClick={checkout}
             >
               Checkout now
             </button>
           </div>
-          <div className=" flex w-4/5 justify-between">
+          <div className=" flex w-4/5 justify-between sm:w-full sm:px-1 lg:flex-col">
             <div className=" flex-[3]">
               {storedCart.map((item, id) => (
                 <CartProduct singleProduct={item} key={id} />
