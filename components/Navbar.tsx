@@ -1,25 +1,13 @@
 import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useContext } from "../components/ContextProvider";
 
 export const Navbar = () => {
-  const [cartItemsCount, setCartItemsCount] = React.useState(0);
-
-  if (typeof window !== "undefined") {
-    window.addEventListener("storage", () => {
-      setCartItemsCount(
-        JSON.parse(localStorage.getItem("cart") || "[]").length
-      );
-    });
-  }
+  const { cartItemsCount, setCartItemsCount } = useContext();
 
   React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      setCartItemsCount(
-        JSON.parse(localStorage.getItem("cart") || "[]").length
-      );
-    }
+    setCartItemsCount(JSON.parse(localStorage.getItem("cart") || "[]").length);
   }, []);
-  React.useEffect(() => {}, [cartItemsCount]);
   return (
     <div className=" h-16">
       <div className=" px-3 py-5 flex justify-between">

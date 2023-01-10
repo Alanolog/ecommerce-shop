@@ -1,6 +1,7 @@
 import React from "react";
 import { MdRemoveCircleOutline } from "react-icons/md";
 import { RiAddCircleLine } from "react-icons/ri";
+import { useContext } from "../../components/ContextProvider";
 
 interface IProps {
   product: {
@@ -21,12 +22,16 @@ const Product: React.FC<IProps> = ({ product }) => {
   const filterSizeClasses = " ml-2 p-1";
 
   const [counter, setCounter] = React.useState(1);
+  const { setCartItemsCount } = useContext();
 
   const handleAddToCart = () => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
     localStorage.setItem(
       "cart",
       JSON.stringify([...storedCart, { item: product, amount: counter }])
+    );
+    setCartItemsCount(
+      [...storedCart, { item: product, amount: counter }].length
     );
   };
 

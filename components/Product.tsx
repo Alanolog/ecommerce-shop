@@ -1,10 +1,7 @@
 import React from "react";
-import {
-  AiOutlineShoppingCart,
-  AiOutlineHeart,
-  AiOutlineSearch,
-} from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
 import { useRouter } from "next/router";
+import { useContext } from "../components/ContextProvider";
 
 interface IProps {
   item: {
@@ -23,7 +20,7 @@ interface IProps {
 
 export const Product: React.FC<IProps> = ({ item }) => {
   const router = useRouter();
-
+  const { setCartItemsCount } = useContext();
   const handleShowProduct = () => {
     router.push(`/product/${item.id}`);
   };
@@ -34,6 +31,7 @@ export const Product: React.FC<IProps> = ({ item }) => {
       "cart",
       JSON.stringify([...storedCart, { item, amount: 1 }])
     );
+    setCartItemsCount([...storedCart, { item, amount: 1 }].length);
   };
 
   return (
