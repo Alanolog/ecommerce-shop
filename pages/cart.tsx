@@ -49,11 +49,11 @@ const CartProduct: React.FC<CartProps> = ({ singleProduct }) => {
   };
   return (
     <div className=" flex justify-between my-2 border-b pb-2 sm:flex-col sm:items-center sm:gap-2">
-      <div className="flex-2 flex sm:flex-col">
+      <div className="flex-2 flex sm:flex-col sm:items-center ">
         <img
           src={currProduct.item.image}
           alt={currProduct.item.title}
-          className=" w-[200px] sm:w-full sm:max-h-[50vh] sm:object-scale-down lg:max-w-[33vw]"
+          className=" w-[200px] sm:w-full sm:max-h-[50vh] sm:object-scale-down lg:max-w-[33vw] "
         />
         <div className=" p-5 flex flex-col items-center content-around">
           <p className="">
