@@ -45,19 +45,16 @@ export const Footer = () => {
             Cart
           </li>
           <li className={singleListItem}>
-            <Link href="/productList?category=men's clothing">Man Fashion</Link>
+            <Link href="/productList/men's clothing">Man Fashion</Link>
           </li>
           <li className={singleListItem}>
-            <Link href="/productList?category=women's clothing">
-              {" "}
-              Woman Fashion
-            </Link>
+            <Link href="/productList/women's clothing"> Woman Fashion</Link>
           </li>
           <li className={singleListItem}>
-            <Link href="/productList?category=jewelery">Jewelery</Link>
+            <Link href="/productList/jewelery">Jewelery</Link>
           </li>
           <li className={singleListItem}>
-            <Link href="/productList?category=electronics">Electronics</Link>
+            <Link href="/productList/electronics">Electronics</Link>
           </li>
         </ul>
       </div>

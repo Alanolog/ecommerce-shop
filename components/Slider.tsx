@@ -32,7 +32,7 @@ const Slide: React.FC<{
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/productList?category=${productListCategory}`);
+    router.push(`/productList/${productListCategory}`);
   };
   return (
     <div className="flex items-center h-screen w-screen">

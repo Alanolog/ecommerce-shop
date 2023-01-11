@@ -9,7 +9,7 @@ export const CategoryItem: React.FC<IProps> = ({ item }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/productList?category=${item}`);
+    router.push(`/productList/${item}`);
   };
 
   let itemImgSrc = "./categories-base.jpg";

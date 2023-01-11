@@ -1,5 +1,5 @@
 import React from "react";
-import { Products } from "../components";
+import { Products } from "../../components";
 import axios from "axios";
 
 interface IProps {
@@ -98,18 +98,25 @@ const ProductList: React.FC<IProps> = ({ products }) => {
           </select>
         </div>
       </div>
-      <Products products={currProducts} />
+      {currProducts && <Products products={currProducts} />}
     </main>
   );
 };
 export default ProductList;
 
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
+}
+
 export async function getStaticProps(context: {
-  query?: {
-    category?: string;
+  params: {
+    id: string;
   };
 }) {
-  const category = context?.query?.category;
+  const category = context?.params?.id;
   const products = await axios.get(
     `https://fakestoreapi.com/products${
       category ? `/category/${category}` : ""
