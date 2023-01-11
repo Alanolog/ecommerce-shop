@@ -29,7 +29,7 @@ const Home: React.FC<IProps> = ({ products, categories }) => {
 };
 export default Home;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const products = await axios.get("https://fakestoreapi.com/products");
   const categories = await axios.get(
     "https://fakestoreapi.com/products/categories"

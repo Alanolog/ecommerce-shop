@@ -104,7 +104,7 @@ const ProductList: React.FC<IProps> = ({ products }) => {
 };
 export default ProductList;
 
-export async function getServerSideProps(context: {
+export async function getStaticProps(context: {
   query?: {
     category?: string;
   };

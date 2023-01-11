@@ -63,23 +63,23 @@ const Product: React.FC<IProps> = ({ product }) => {
     <main>
       <div className=" p-12 flex lg:flex-col sm:p-1">
         <h2 className=" hidden font-extralight lg:text-5xl sm:text-2xl  lg:block my-5">
-          {product.title}
+          {product?.title}
         </h2>
         <div className="flex-1">
           <img
-            src={product.image}
-            alt={product.title}
+            src={product?.image}
+            alt={product?.title}
             className=" w-full h-5/6 object-contain"
           />
         </div>
         <div className=" flex-1 px-12 sm:px-1 lg:flex lg:flex-col lg:items-center">
           <h2 className=" font-extralight text-7xl lg:hidden">
-            {product.title}
+            {product?.title}
           </h2>
-          <p className="my-5">{product.description}</p>
-          <span className=" font-thin text-4xl">{product.price} USD</span>
+          <p className="my-5">{product?.description}</p>
+          <span className=" font-thin text-4xl">{product?.price} USD</span>
           <p className=" font-extralight text-xl my-5">
-            Rating: {product.rating.rate}/5
+            Rating: {product?.rating.rate}/5
           </p>
           <div className="flex justify-between w-1/2 my-8 lg:justify-center">
             <div className=" flex items-center">
@@ -124,8 +124,14 @@ const Product: React.FC<IProps> = ({ product }) => {
   );
 };
 export default Product;
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
+}
 
-export async function getServerSideProps(context: {
+export async function getStaticProps(context: {
   params: {
     id: string;
   };
