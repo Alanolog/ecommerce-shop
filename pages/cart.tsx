@@ -21,9 +21,10 @@ type singleProduct = {
 };
 interface CartProps {
   singleProduct: singleProduct;
+  setStoredCart: React.Dispatch<React.SetStateAction<never[]>>;
 }
 
-const CartProduct: React.FC<CartProps> = ({ singleProduct }) => {
+const CartProduct: React.FC<CartProps> = ({ singleProduct, setStoredCart }) => {
   const { setCartItemsCount } = useContext();
   const [currProduct, setCurrProduct] = React.useState(singleProduct);
   const deleteProduct = (product: singleProduct) => {
@@ -45,6 +46,7 @@ const CartProduct: React.FC<CartProps> = ({ singleProduct }) => {
       storedCart[itemIndex] = { ...currProduct, amount: amount + changeAmount };
       localStorage.setItem("cart", JSON.stringify([...storedCart]));
       setCurrProduct(storedCart[itemIndex]);
+      setStoredCart(storedCart);
     }
   };
   return (
@@ -164,7 +166,11 @@ const Cart: React.FC = () => {
           <div className=" flex w-4/5 justify-between sm:w-full sm:px-1 lg:flex-col">
             <div className=" flex-[3]">
               {storedCart.map((item, id) => (
-                <CartProduct singleProduct={item} key={id} />
+                <CartProduct
+                  singleProduct={item}
+                  setStoredCart={setStoredCart}
+                  key={id}
+                />
               ))}
             </div>
             <div className=" flex-1 bg-gray-50 rounded-lg p-5 min-h-[50vh] border border-gray-300">
